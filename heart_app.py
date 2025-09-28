@@ -8,7 +8,7 @@ from huggingface_hub import hf_hub_download
 
 
 # Download model file from Hugging Face Hub
-
+@st.cache_data
 model_path = hf_hub_download(
     repo_id="ZainShahHere/cardiac_arrest_model",  # your model repo
     filename="cardiac_arrest_model.pkl"      # exact file name you uploaded
