@@ -8,6 +8,7 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+*.pkl
 
 # Environment/IDE settings
 .env
