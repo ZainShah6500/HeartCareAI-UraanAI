@@ -7,16 +7,15 @@ import shap
 from huggingface_hub import hf_hub_download
 
 
-# Download model file from Hugging Face Hub
+# Download model file from Hugging Face Hub with caching
 @st.cache_data
-model_path = hf_hub_download(
-    repo_id="ZainShahHere/cardiac_arrest_model",  # your model repo
-    filename="cardiac_arrest_model.pkl"      # exact file name you uploaded
-)
+def get_model_path():
+	return hf_hub_download(
+		repo_id="ZainShahHere/cardiac_arrest_model",  # your model repo
+		filename="cardiac_arrest_model.pkl"      # exact file name you uploaded
+	)
 
-# # Load the model
-# with open(model_path, "rb") as f:
-#     model = joblib.load(f)
+model_path = get_model_path()
 calibrated_rf = joblib.load(model_path)
 
 
