@@ -4,17 +4,33 @@ import numpy as np
 import pandas as pd
 import joblib
 import shap
+from huggingface_hub import hf_hub_download
+
+
+# Download model file from Hugging Face Hub
+
+model_path = hf_hub_download(
+    repo_id="ZainShahHere/cardiac_arrest_model",  # your model repo
+    filename="cardiac_arrest_model.pkl"      # exact file name you uploaded
+)
+
+# # Load the model
+# with open(model_path, "rb") as f:
+#     model = joblib.load(f)
+calibrated_rf = joblib.load(model_path)
+
+
 
 # Load model
-@st.cache_resource
-def load_model():
-	return joblib.load('cardiac_arrest_model.pkl')
-calibrated_rf = load_model()
+# @st.cache_resource
+# def load_model():
+# 	return joblib.load('cardiac_arrest_model.pkl')
+# calibrated_rf = load_model()
 
 # Example: cache data loading if you use a CSV or heavy preprocessing
-@st.cache_data
-def load_data():
-	return pd.read_csv('heart_data.csv')
+# @st.cache_data
+# def load_data():
+# 	return pd.read_csv('heart_data.csv')
 # df = load_data()  # Uncomment if you use the dataset in the app
 
 # Feature lists
